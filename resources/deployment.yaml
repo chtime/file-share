@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-share
+  namespace: file-share
+  labels:
+    app: file-share
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-share
+  template:
+    metadata:
+      labels:
+        app: file-share
+    spec:
+      containers:
+      - image: ghcr.io/chtime/file-share:main@sha256:b9e88592107bab52b5ec4c975dd868b9a855a67b1982b1c6fd8705f43ea6003e
+        name: file-share
+        resources: {}
+        ports:
+          - containerPort: 8000
+            name: http
